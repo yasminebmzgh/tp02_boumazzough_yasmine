@@ -9,15 +9,32 @@ import { User } from '../Models/User';
 })
 export class SaisieInfoClientComponent implements OnInit {
   
-  user : User = new User();
-  constructor() { }
+  clientVerified: User = new User();
+  client: User = new User();
 
-  ngOnInit(): void {
-  }
-  submit() {
-  	console.log("J'ai validé");
-	console.log(this.user);
-	
+  constructor() {}
+
+  ngOnInit(): void {}
+
+  zipKeyPressed(event: KeyboardEvent) {
+    if (!event.key.match(/\d/) || this.client.cp.length >= 5) {
+      event.preventDefault();
+    }
   }
 
+  phoneKeyPressed(event: KeyboardEvent) {
+    if (!event.key.match(/\d/)) {
+      event.preventDefault();
+    }
+  }
+
+  SubmitForm(): void {
+    if (this.client.mdp !== this.client.confirmMdp) {
+      alert(
+        "le mot de passe n'est pas identique à la confirmation de mot de passe"
+      );
+      return;
+    }
+    this.clientVerified = { ...this.client };
+  }
 }

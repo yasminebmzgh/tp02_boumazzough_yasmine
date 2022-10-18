@@ -8,7 +8,8 @@ export class User {
 	tel : string;
 	email : string;
 	civilite : string;
-	mdp : string;
+	mdp : string= '';
+	confirmMdp: String = '';
 	login : string;
 	pays : string;
 	
